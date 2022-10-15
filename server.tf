@@ -8,6 +8,9 @@ resource "aws_instance" "web" {
       volume_size = 8
       delete_on_termination = true
     }
+    tags = {
+      Name = "HelloWorld"
+    }
     user_data = <<-EOF
         #!/bin/bash
         set -ex
