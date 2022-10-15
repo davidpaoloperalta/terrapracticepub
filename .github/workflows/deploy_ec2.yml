@@ -30,10 +30,10 @@ jobs:
         run: ls -l
 
       - name: Run a Terraform init  
-      uses: docker://hashicorp/terraform:0.14.11
-      with:
-        entrypoint: terraform
-        args: init
+        uses: docker://hashicorp/terraform:0.14.11
+        with:
+          entrypoint: terraform
+          args: init
 
       - name: Run a Terraform validate    
         uses: docker://hashicorp/terraform:0.14.11
