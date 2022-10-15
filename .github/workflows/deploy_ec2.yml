@@ -29,15 +29,18 @@ jobs:
       - name: View Contents
         run: ls -l
 
-      - name: Run a Terraform init  
-        uses: docker://hashicorp/terraform:0.14.11
-        with:
-          entrypoint: terraform
-          args: init
+      - name: Terraform Init
+        uses: hashicorp/terraform-github-actions/init@v0.4.0
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Run a Terraform validate    
-        uses: docker://hashicorp/terraform:0.14.11
-        with:
-          entrypoint: terraform
-          args: validate
+      - name: Terraform Validate
+        uses: hashicorp/terraform-github-actions/validate@v0.3.7
+
+      - name: Terraform Apply
+        uses: hashicorp/terraform-github-actions/apply@v0.4.0
+        env:
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
